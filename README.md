@@ -2,9 +2,9 @@
 
 Samples how to use the microservice wildfly-swarm. 
 
-| branch        | status        | download      |
-| ------------- | --------------| --------------| 
-| master        |               |               |
+| branch        | status        |
+| ------------- | --------------|
+| master        | [![Build Status](https://travis-ci.org/Shynixn/Wildfly-Swarm-Samples.svg?branch=master)](https://travis-ci.org/Shynixn/Wildfly-Swarm-Samples)              |
 
 
 ## Jaxrs-Cdi (JaxrsCdi)
