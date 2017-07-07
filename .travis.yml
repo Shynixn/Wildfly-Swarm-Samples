@@ -1,0 +1,6 @@
+language: java
+sudo: true
+script:
+    - mvn compile test
+jdk:
+  - oraclejdk8
