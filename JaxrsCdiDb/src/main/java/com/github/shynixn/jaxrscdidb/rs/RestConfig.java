@@ -1,13 +1,7 @@
-package com.github.shynixn.jaxrscdi.rs.resource;
+package com.github.shynixn.jaxrscdidb.rs;
 
-import com.github.shynixn.jaxrscdi.entity.Person;
-import com.github.shynixn.jaxrscdi.facade.PersonFacade;
-
-import javax.inject.Inject;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import java.util.ArrayList;
-import java.util.List;
+import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.core.Application;
 
 /**
  * Copyright 2017 Shynixn
@@ -38,39 +32,6 @@ import java.util.List;
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-@Path("person")
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
-public class PersonResource {
-
-    @Inject
-    private PersonFacade personFacade;
-
-    @POST
-    public void addPerson(Person person) {
-        this.personFacade.insertPerson(person);
-    }
-
-    @DELETE
-    @Path("/{id}")
-    public void removePerson(@PathParam("id") long id) {
-        this.personFacade.deletePerson(id);
-    }
-
-    @PUT
-    @Path("/{id}")
-    public void updatePerson(@PathParam("id") long id, Person person) {
-        this.personFacade.updatePerson(id, person);
-    }
-
-    @GET
-    @Path("/{lastname}")
-    public Person getPersonFromName(@PathParam("lastname") String lastName) {
-        return this.personFacade.findPerson(lastName);
-    }
-
-    @GET
-    public List<Person> getAllPersons() {
-        return this.personFacade.findPersons();
-    }
+@ApplicationPath("rs")
+public class RestConfig extends Application {
 }

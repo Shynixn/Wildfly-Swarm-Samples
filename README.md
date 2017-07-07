@@ -11,6 +11,18 @@ Samples how to use the microservice wildfly-swarm.
 
 Sample project how to use wildfly-swarm as very small rest service with lightweight dependency injection via CDI. No EJB. 
 
+- Jax-rs
+- CDI
+
+## Jaxrs-Cdi-Db (JaxrsCdiDb)
+
+Sample project how to use wildfly-swarm as rest service with CDI and a h2 database via JPA. No EJB. 
+
+- Jax-rs
+- CDI
+- JPA
+- H2-DB
+
 ## Licence
 
 The source code is licensed under the MIT license. 

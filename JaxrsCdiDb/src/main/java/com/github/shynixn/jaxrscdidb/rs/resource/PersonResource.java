@@ -1,12 +1,11 @@
-package com.github.shynixn.jaxrscdi.rs.resource;
+package com.github.shynixn.jaxrscdidb.rs.resource;
 
-import com.github.shynixn.jaxrscdi.entity.Person;
-import com.github.shynixn.jaxrscdi.facade.PersonFacade;
+import com.github.shynixn.jaxrscdidb.entity.Person;
+import com.github.shynixn.jaxrscdidb.facade.PersonFacade;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,24 +42,24 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 public class PersonResource {
 
-    @Inject
+   @Inject
     private PersonFacade personFacade;
 
     @POST
     public void addPerson(Person person) {
-        this.personFacade.insertPerson(person);
+       this.personFacade.insertPerson(person);
     }
 
     @DELETE
     @Path("/{id}")
     public void removePerson(@PathParam("id") long id) {
-        this.personFacade.deletePerson(id);
+      this.personFacade.deletePerson(id);
     }
 
     @PUT
     @Path("/{id}")
     public void updatePerson(@PathParam("id") long id, Person person) {
-        this.personFacade.updatePerson(id, person);
+       this.personFacade.updatePerson(id, person);
     }
 
     @GET

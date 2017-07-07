@@ -1,8 +1,11 @@
-package com.github.shynixn.jaxrscdi.facade;
+package com.github.shynixn.jaxrscdidb.facade;
 
-import com.github.shynixn.jaxrscdi.entity.Person;
+import com.github.shynixn.jaxrscdidb.entity.Person;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -38,31 +41,41 @@ import java.util.logging.Logger;
  * SOFTWARE.
  */
 @ApplicationScoped
+@Transactional
 public class PersonFacade {
 
+    @PersistenceContext
+    private EntityManager entityManager;
+
     public List<Person> findPersons() {
-        final List<Person> persons = new ArrayList<>();
-        persons.add(new Person("Max", "Mustermann"));
-        persons.add(new Person("Christoph", "Power"));
+        List<Person> persons = this.entityManager.createNamedQuery("person.findAll", Person.class).getResultList();
         Logger.getLogger(PersonFacade.class.getSimpleName()).log(Level.INFO, "Queried persons " + persons + ".");
         return persons;
     }
 
     public Person findPerson(String lastName) {
-        final Person person = new Person("Lea", lastName);
+        final Person person = this.entityManager.createNamedQuery("person.findByName", Person.class)
+                .setParameter("lastName", lastName)
+                .getSingleResult();
         Logger.getLogger(PersonFacade.class.getSimpleName()).log(Level.INFO, "Queried person " + person + ".");
         return person;
     }
 
     public void updatePerson(long id, Person person) {
+        final Person dataBasePerson = this.entityManager.getReference(Person.class, id);
+        dataBasePerson.setFirstName(person.getFirstName());
+        dataBasePerson.setLastName(person.getLastName());
+        this.entityManager.merge(dataBasePerson);
         Logger.getLogger(PersonFacade.class.getSimpleName()).log(Level.INFO, "Updated person " + person + " with id " + id + ".");
     }
 
     public void deletePerson(long id) {
+        this.entityManager.remove(this.entityManager.getReference(Person.class, id));
         Logger.getLogger(PersonFacade.class.getSimpleName()).log(Level.INFO, "Deleted person with id " + id + ".");
     }
 
     public void insertPerson(Person person) {
+        this.entityManager.merge(person);
         Logger.getLogger(PersonFacade.class.getSimpleName()).log(Level.INFO, "Inserted person " + person + ".");
     }
 }
