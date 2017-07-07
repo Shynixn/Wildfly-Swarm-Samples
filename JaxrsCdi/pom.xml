@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.shynixn</groupId>
-    <artifactId>swarm-jaxrscdi-sample</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>swarm-jaxrscdi-sample</artifactId>  <!-- UPDATE -->
+    <version>1.0-SNAPSHOT</version>  <!-- UPDATE -->
     <packaging>war</packaging>
 
     <properties>
