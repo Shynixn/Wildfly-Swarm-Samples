@@ -25,8 +25,8 @@ Sample project how to use wildfly-swarm as rest service with CDI and a h2 databa
 
 ### Configure database
 
-If you want to customize your database access. Put the following properties in your pom.xml
-[More about configuring databases](https://wildfly-swarm.gitbooks.io/wildfly-swarm-users-guide/content/configuration_properties.html)
+If you want to customize your database access. Put the following properties in your pom.xml.
+[More about configuring databases.](https://wildfly-swarm.gitbooks.io/wildfly-swarm-users-guide/content/configuration_properties.html)
 
 
 ```xml
